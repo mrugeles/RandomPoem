@@ -57,15 +57,16 @@ public class PoemRule {
             return poemRule.getRuleValue();
         }
         if(value.matches(RuleProvider.KEYWORD_DEFINITION)){
-            return value=="$LINEBREAK"?"\n":"";
+            return value.equals("$LINEBREAK")?"\n":"";
         }
-        return value;
+        return String.format("%s ", value);
     }
 
     private String getRandomValue(String[] arrayValues) throws RuleException {
         if (arrayValues != null && arrayValues.length > 0) {
             Random randomIndex = new Random(System.currentTimeMillis());
-            return arrayValues[randomIndex.nextInt(arrayValues.length)];
+            int random = randomIndex.nextInt(arrayValues.length);
+            return arrayValues[random];
         }
         return "";
     }

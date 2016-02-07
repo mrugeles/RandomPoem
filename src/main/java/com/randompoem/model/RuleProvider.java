@@ -22,6 +22,7 @@ public class RuleProvider {
     }
 
     public static PoemRule getRule(String key) throws RuleException {
+        key = key.replaceAll("[<>]", "");
         if(poemRules.containsKey(key)){
             return poemRules.get(key);
         } else {
