@@ -12,7 +12,6 @@ public class RuleProvider {
 
     public static final String RULE_DEFINITION = "^<\\w+>$";
     public static final String KEYWORD_DEFINITION = "^(\\$)\\w+";
-    public final String[] KEYWORDS_KEYS = null;
 
     private RuleProvider(){ }
 
