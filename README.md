@@ -2,8 +2,8 @@
 ### Requirements
   - Java 7
   - Maven >= 3.3.3
-### Running App
 
+### Running App
 
 ```sh
 $ mvn compile
