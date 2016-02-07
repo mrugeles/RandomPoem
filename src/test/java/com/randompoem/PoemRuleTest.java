@@ -18,4 +18,13 @@ public class PoemRuleTest extends TestCase{
         PoemRule poemRule = new PoemRule("my_rule", "red blue yellow");
         assertTrue(poemRule.getDefinitionList().get(1)[0].equals("blue"));
     }
+
+    public void testWordRule(){
+        PoemRule poemRule = new PoemRule("my_rule", "above|across|against|along|among|around|before|behind|beneath|beside|between|beyond|during|inside|onto|outside|under|underneath|upon|with|without|through <NOUN>|<PRONOUN>|<ADJECTIVE>");
+        try {
+            assertTrue(poemRule.getRuleWords().contains("beneath"));
+        } catch (RuleException e) {
+            fail(e.getMessage());
+        }
+    }
 }

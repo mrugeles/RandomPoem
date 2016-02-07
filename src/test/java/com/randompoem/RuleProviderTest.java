@@ -14,10 +14,10 @@ public class RuleProviderTest extends TestCase {
         HashMap<String, PoemRule> poemRules = new HashMap<String, PoemRule>();
         PoemRule someRule = new PoemRule("SOMERULE", "RULE DEFINITIONS");
         poemRules.put("SOMERULE", someRule);
-        RuleProvider.setRules(poemRules);
+        RuleProvider.getInstance().setRules(poemRules);
         PoemRule result = null;
         try {
-            result = RuleProvider.getRule ("SOMERULE");
+            result = RuleProvider.getInstance().getRule ("SOMERULE");
         } catch (RuleException e) {
             fail(e.getMessage());
         }

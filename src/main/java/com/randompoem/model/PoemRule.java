@@ -53,7 +53,7 @@ public class PoemRule {
 
     private String parseValue(String value) throws RuleException {
         if(value.matches(RuleProvider.RULE_DEFINITION)){
-            PoemRule poemRule = RuleProvider.getRule(value);
+            PoemRule poemRule = RuleProvider.getInstance().getRule(value);
             return poemRule.getRuleValue();
         }
         if(value.matches(RuleProvider.KEYWORD_DEFINITION)){
@@ -62,11 +62,23 @@ public class PoemRule {
         return String.format("%s ", value);
     }
 
+    public ArrayList<String> getRuleWords() throws RuleException {
+        ArrayList<String> wordList = new ArrayList<String>();
+        for (String[] arrayValues:this.definitionList) {
+            for (String value: arrayValues) {
+                if(!value.matches(RuleProvider.RULE_DEFINITION) && !value.matches(RuleProvider.KEYWORD_DEFINITION)){
+                    wordList.add(value);
+                }
+
+            }
+        }
+        return wordList;
+    }
+
     private String getRandomValue(String[] arrayValues) throws RuleException {
         if (arrayValues != null && arrayValues.length > 0) {
-            Random randomIndex = new Random(System.currentTimeMillis());
-            int random = randomIndex.nextInt(arrayValues.length);
-            return arrayValues[random];
+            Random randomIndex = new Random();
+            return arrayValues[randomIndex.nextInt(arrayValues.length)];
         }
         return "";
     }

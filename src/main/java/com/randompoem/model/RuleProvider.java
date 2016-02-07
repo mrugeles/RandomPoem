@@ -5,23 +5,29 @@ import com.randompoem.RuleException;
 import java.util.HashMap;
 
 public class RuleProvider {
-    private static HashMap<String, PoemRule> poemRules = null;
+    private static RuleProvider singleton = new RuleProvider( );
+
+    private HashMap<String, PoemRule> poemRules = null;
+    private HashMap<String, String> KEYWORDS_VALUES = null;
+
     public static final String RULE_DEFINITION = "^<\\w+>$";
     public static final String KEYWORD_DEFINITION = "^(\\$)\\w+";
-    public static final String[] KEYWORDS_KEYS = null;
-    private static HashMap<String, String> KEYWORDS_VALUES = null;
+    public final String[] KEYWORDS_KEYS = null;
 
-    public static void setRules(HashMap<String, PoemRule> rules){
+    private RuleProvider(){ }
+
+    public static RuleProvider getInstance( ) {
+        return singleton;
+    }
+
+    public void setRules(HashMap<String, PoemRule> rules){
         if(poemRules == null){
             poemRules = rules;
         }
     }
 
-    public void initKeyWords(){
 
-    }
-
-    public static PoemRule getRule(String key) throws RuleException {
+    public PoemRule getRule(String key) throws RuleException {
         key = key.replaceAll("[<>]", "");
         if(poemRules.containsKey(key)){
             return poemRules.get(key);
